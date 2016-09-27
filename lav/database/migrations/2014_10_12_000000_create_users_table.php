@@ -29,7 +29,7 @@ class CreateUsersTable extends Migration
             $table->string('avatar',1024)->nullable();
             //Option information
             $table->boolean('administrator')->default(0);
-            $table->boolean('active')->default(1);
+            $table->boolean('status')->default(1);
             //Automatic information
             $table->rememberToken();
             $table->timestamps();

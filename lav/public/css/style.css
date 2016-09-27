@@ -1,3 +1,13 @@
 label.error{
     color:red;
 }
+
+.errorblock{
+    text-align: center;
+    color: red;
+    background-color: red;
+    border: red 1px solid;
+    margin:5px;
+    padding:5px;
+    color:white;
+}

@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 // The login page
 Route::get('/login','AuthController@showLogin')->name('login');
+Route::post('/login','AuthController@validLogin')->name('login_validation');
+Route::any('/logout','AuthController@logout')->name('logout');
+

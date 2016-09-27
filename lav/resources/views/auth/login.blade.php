@@ -9,20 +9,48 @@
             <div class="card card-container">
                 <img id="profile-img" class="profile-img-card" src="/img/laravel.png" />
                 <p id="profile-name" class="profile-name-card"></p>
-                <form class="form-signin form_validate" action="#" method="POST">
+                {!! Form::open(array('url' => '/login','class'=>'form_validate form-signin','method'=>'POST')) !!}
+                    @if(\Input::get("url") != "")
+                        <input type="hidden" name="url" value="{{ \Input::get("url") }}" />
+                    @endif
                     <span id="reauth-email" class="reauth-email"></span>
-                    <input type="text" id="username" name="username" class="form-control" placeholder="{{"Username"}}" required="required" autofocus min="2">
-                    <input type="password" name="password" id="password" class="form-control" placeholder="{{"Password"}}" required="required" min="2">
+
+                    {!! Form::text("username",Input::old("username"),["placeholder"=>'Username','class'=>'form-control','required'=>'required','autofocus'=>'autofocus','minlength'=>'6','id'=>'username'])  !!}
+                    {!! Form::password("password",["placeholder"=>'Password','class'=>'form-control','required'=>'required','minlength'=>'6','id'=>'password'])  !!}
                     <div id="remember" class="checkbox">
                         <label>
-                            <input type="checkbox" value="y" name="remember"> {{ "Remember me" }}
+                            {!! Form::checkbox("remember",'y',false) !!}  {{ "Remember me" }}
                         </label>
                     </div>
                     <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">{{ "Login" }}</button>
-                </form><!-- /form -->
+                {!! Form::close() !!}<!-- /form -->
                 <a href="#" class="forgot-password">
                     {{ "Forgot password?"  }}
                 </a>
+
+                @foreach ($errors->all() as $message)
+                    <div class="errorblock">
+                        {{ $message }}
+                    </div>
+                @endforeach
+                @if(isset($_GET["e"]))
+                    <div class="errorblock">
+                        {{ "Invalid login information"  }}
+                    </div>
+                @endif
+
+                @if(isset($_GET["s"]))
+                    <div class="errorblock">
+                        {{ "Session opened somewhere else"  }}
+                    </div>
+                @endif
+
+                @if(isset($_GET["snd"]))
+                    <div class="successblock">
+                        {{ "Forgot password complete"  }}
+                    </div>
+                @endif
+
             </div><!-- /card-container -->
         </div><!-- /container -->
     </body>
