@@ -26,10 +26,9 @@ class AuthController extends Controller
      * Valids the login information
      */
    public function validLogin(){
-        if(\Auth::check()){
+        if(\Auth::check()){ //if it is already logged in, then we just redirect to the main page.
 			return Redirect::to("/");
 		}
-
 		// In case of success login, we want to redirect the user to the new url, that can be indicated here.
 		$originalPath = "/";
 		if(Input::get("url") != null && Input::get("url") != ""){
@@ -56,7 +55,6 @@ class AuthController extends Controller
         if(($r)=="y"){
             $remember = true;
         }
-
         // create our user data for the authentication
         $userdata = array(
             'username' 		=> 	Input::get('username'),
@@ -64,10 +62,10 @@ class AuthController extends Controller
             'status'        => 	'1',
         );
         if (Auth::attempt($userdata,$remember)) {
-            \App\Classes\Registry::storeLoginLog(Auth::user());
-            return Redirect::to($originalPath);
+            \App\Classes\Registry::storeLoginLog(  Auth::user()  ); // We store the Registry of this login for future reference
+            return Redirect::to(  $originalPath  );
         } else {
-            return Redirect::to('/login?e')->withInput(Input::except('password','_token')); // send back the input (not the password) so that we can repopulate the form
+            return Redirect::to('/login?e')->withInput(  Input::except('password','_token')  ); // send back the input (not the password) so that we can repopulate the form
         }
    }
 

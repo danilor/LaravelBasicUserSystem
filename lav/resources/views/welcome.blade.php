@@ -29,6 +29,11 @@
         <div class="container">
             <div class="content">
                 <div class="title">{{"Laravel 5"}}</div>
+                @if(Auth::check())
+                <p>
+                    {{ "Welcome"  }} {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                </p>
+                @endif
             </div>
         </div>
     </body>
