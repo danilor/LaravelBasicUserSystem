@@ -7,7 +7,6 @@
 <script src="/assets/jquery-validation/{{config('html.jquery_validation_version')}}/additional-methods.min.js"></script>
 
 <script type="text/javascript">
-
     /**
      * Init document ready
      */
