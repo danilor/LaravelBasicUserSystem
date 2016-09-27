@@ -8,7 +8,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
-class AuthController extends Controller
+/*
+ * I am renaiming this contrller class so it wont interfeer with my new class, but I don't want to delete in case I need to check the information later.
+ * */
+class AuthController2 extends Controller
 {
     /*
     |--------------------------------------------------------------------------
