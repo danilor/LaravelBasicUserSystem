@@ -4,10 +4,18 @@ label.error{
 
 .errorblock{
     text-align: center;
-    color: red;
     background-color: red;
     border: red 1px solid;
     margin:5px;
     padding:5px;
     color:white;
+}
+
+.successblock{
+    text-align: center;
+    color: green;
+    background-color: lightgreen;
+    border: green 1px solid;
+    margin:5px;
+    padding:5px;
 }

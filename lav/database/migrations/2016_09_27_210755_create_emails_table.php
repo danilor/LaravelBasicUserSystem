@@ -22,7 +22,7 @@ class CreateEmailsTable extends Migration
             $table->string('to_email');
             $table->string('to_name');
             $table->longText('body')->comment("The body of the email, without the html");
-            $table->longText('html')->comment("The body of the email, including the html");
+            // $table->longText('html')->comment("The body of the email, including the html");
             $table->boolean('sent')->default(0);
             $table->dateTime('sent_date')->nullable();
             $table->longText('result')->nullable()->coment("We want to store the result of the email in case we are using an external service");

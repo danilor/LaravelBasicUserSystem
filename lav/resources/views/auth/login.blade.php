@@ -1,12 +1,9 @@
-<html>
-    <head>
-        <title>{{ "Login" }}</title>
-        @include('templates.includes.headercss')
-        <link rel="stylesheet" href="/css/login.css" type="text/css">
-    </head>
-    <body>
-        <div class="container">
-            <div class="card card-container">
+@extends('templates.auth')
+@section('title')
+    {{ "Login" }}
+@stop
+@section('body')
+
                 <img id="profile-img" class="profile-img-card" src="/img/laravel.png" />
                 <p id="profile-name" class="profile-name-card"></p>
                 {!! Form::open(array('url' => '/login','class'=>'form_validate form-signin','method'=>'POST')) !!}
@@ -24,7 +21,7 @@
                     </div>
                     <button class="btn btn-lg btn-primary btn-block btn-login" type="submit">{{ "Login" }}</button>
                 {!! Form::close() !!}<!-- /form -->
-                <a href="#" class="forgot-password">
+                <a href="{{ route('forgot_password')  }}" class="forgot-password">
                     {{ "Forgot password?"  }}
                 </a>
 
@@ -47,12 +44,9 @@
 
                 @if(isset($_GET["snd"]))
                     <div class="successblock">
-                        {{ "Forgot password complete"  }}
+                        {{ "Your request has been received. If the email correspond to one of our users, an email is going to be send to that address with instructions of how to reset the password."  }}
                     </div>
                 @endif
 
-            </div><!-- /card-container -->
-        </div><!-- /container -->
-    </body>
-    @include('templates.includes.footerjs')
-</html>
+
+@stop

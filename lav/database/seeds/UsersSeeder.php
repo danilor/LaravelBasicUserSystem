@@ -14,7 +14,7 @@ class UsersSeeder extends Seeder
     {
         // The main user
         $u = new \App\User();
-        $u -> username      = 'daniloramirez';
+        $u -> username      = 'administrator';
         $u -> password      = bcrypt('123456');
         $u -> email         = 'daniloramirez.cr@gmail.com';
         $u -> firstname     =  'Danilo';

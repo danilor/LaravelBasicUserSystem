@@ -33,6 +33,12 @@
                 <p>
                     {{ "Welcome"  }} {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                 </p>
+                <p>
+                    <a href='{{ route('logout')  }}'>Logout</a>
+                </p>
+
+                @else
+                    <p>Welcome. Please <a href="{{ route('login')  }}">login</a> so we can know who you are</p>
                 @endif
             </div>
         </div>

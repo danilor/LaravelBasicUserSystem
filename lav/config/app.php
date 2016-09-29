@@ -2,6 +2,13 @@
 
 return [
 
+
+    /**
+     * Added by Danilo
+     */
+
+     'app_name'     =>      'Basic Laravel',
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

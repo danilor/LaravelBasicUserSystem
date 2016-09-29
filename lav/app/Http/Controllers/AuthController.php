@@ -21,7 +21,12 @@ class AuthController extends Controller
         return view('auth.login');
    }
 
-
+    /**
+     * Shows the forgot password page.
+     */
+   public function showForgotPassword(){
+        return view('auth.forgot_password');
+   }
     /**
      * Valids the login information
      */
@@ -76,6 +81,37 @@ class AuthController extends Controller
         Auth::logout();
 		\Session::flush();
 		return Redirect::to("/");
+   }
+
+    /**
+     * Function that executes the forgot password action
+     */
+   public function actionForgotPassword(){
+
+        $rules = array(
+			'email'              =>  Common::getRule("email", true),
+		);
+		// Lets run the validator
+		$validator = Validator::make(Input::all(), $rules);
+
+		if ($validator->fails()) {
+			return Redirect::to(\Request::fullUrl())
+					->withErrors($validator) // send back all errors to the login form
+					->withInput(Input::except('password')); // send back the input (not the password) so that we can repopulate the form
+		}
+
+		// From this point on, we will return a success message even when the email doesnt exist. We dont want to give to external people information of what emails actually exists or not.
+
+		$u = \App\User::where("email",Input::get("email"))->first();
+
+
+		if( $u != null ){
+            $c = $u -> generatePasswordForgotCode(true); //We generate the code and try to send the email at once
+		}
+
+		return redirect()->route('login', ['snd' => 1]);
+
+
    }
 
 }
