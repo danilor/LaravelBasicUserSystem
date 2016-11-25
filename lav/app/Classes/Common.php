@@ -9,6 +9,12 @@ use DB;
 use Auth;
 use Redirect;
 class Common{
+    /*  This function will return the specified rule
+     *  @param string $name The name of the rule to search
+     *  @param bool $required if it is required or not. Default: false
+     *  @param string $extra Any extra validation you want to add
+     *  @return string The rule string
+     * */
     public static function getRule($name,$required = false, $extra = ""){
                 $mainR = Config::get('rules.'.$name);
                 if($mainR == ""){
@@ -18,15 +24,32 @@ class Common{
                 if(strlen($extra)>0){ $mainR .= "|".$extra; }
                 return $mainR;
     }
+
+    /*
+     * This function will send the site to the 404 page.
+     * @param string $extra Any extra information you want to add. Right now its not in use. Default: empty
+     * @return Laravel:view A response for Laravel template
+     * */
     public static function send404($extra = ""){
             if(Auth::check()) return Redirect::to("/home/restricted");
             return Response::make(View::make('errors/404'), 404);
 			dd("We are working in the 404 page.");
         }
+
+    /*
+     * This function will delete and replace any special character for use in the site.
+     * @param string $txt The text we want to transliterate
+     * @return string The String transliterated
+     * */
 	public  static function transliterateString($txt) {
 	    $transliterationTable = array('á' => 'a', 'Á' => 'A', 'à' => 'a', 'À' => 'A', 'ă' => 'a', 'Ă' => 'A', 'â' => 'a', 'Â' => 'A', 'å' => 'a', 'Å' => 'A', 'ã' => 'a', 'Ã' => 'A', 'ą' => 'a', 'Ą' => 'A', 'ā' => 'a', 'Ā' => 'A', 'ä' => 'ae', 'Ä' => 'AE', 'æ' => 'ae', 'Æ' => 'AE', 'ḃ' => 'b', 'Ḃ' => 'B', 'ć' => 'c', 'Ć' => 'C', 'ĉ' => 'c', 'Ĉ' => 'C', 'č' => 'c', 'Č' => 'C', 'ċ' => 'c', 'Ċ' => 'C', 'ç' => 'c', 'Ç' => 'C', 'ď' => 'd', 'Ď' => 'D', 'ḋ' => 'd', 'Ḋ' => 'D', 'đ' => 'd', 'Đ' => 'D', 'ð' => 'dh', 'Ð' => 'Dh', 'é' => 'e', 'É' => 'E', 'è' => 'e', 'È' => 'E', 'ĕ' => 'e', 'Ĕ' => 'E', 'ê' => 'e', 'Ê' => 'E', 'ě' => 'e', 'Ě' => 'E', 'ë' => 'e', 'Ë' => 'E', 'ė' => 'e', 'Ė' => 'E', 'ę' => 'e', 'Ę' => 'E', 'ē' => 'e', 'Ē' => 'E', 'ḟ' => 'f', 'Ḟ' => 'F', 'ƒ' => 'f', 'Ƒ' => 'F', 'ğ' => 'g', 'Ğ' => 'G', 'ĝ' => 'g', 'Ĝ' => 'G', 'ġ' => 'g', 'Ġ' => 'G', 'ģ' => 'g', 'Ģ' => 'G', 'ĥ' => 'h', 'Ĥ' => 'H', 'ħ' => 'h', 'Ħ' => 'H', 'í' => 'i', 'Í' => 'I', 'ì' => 'i', 'Ì' => 'I', 'î' => 'i', 'Î' => 'I', 'ï' => 'i', 'Ï' => 'I', 'ĩ' => 'i', 'Ĩ' => 'I', 'į' => 'i', 'Į' => 'I', 'ī' => 'i', 'Ī' => 'I', 'ĵ' => 'j', 'Ĵ' => 'J', 'ķ' => 'k', 'Ķ' => 'K', 'ĺ' => 'l', 'Ĺ' => 'L', 'ľ' => 'l', 'Ľ' => 'L', 'ļ' => 'l', 'Ļ' => 'L', 'ł' => 'l', 'Ł' => 'L', 'ṁ' => 'm', 'Ṁ' => 'M', 'ń' => 'n', 'Ń' => 'N', 'ň' => 'n', 'Ň' => 'N', 'ñ' => 'n', 'Ñ' => 'N', 'ņ' => 'n', 'Ņ' => 'N', 'ó' => 'o', 'Ó' => 'O', 'ò' => 'o', 'Ò' => 'O', 'ô' => 'o', 'Ô' => 'O', 'ő' => 'o', 'Ő' => 'O', 'õ' => 'o', 'Õ' => 'O', 'ø' => 'oe', 'Ø' => 'OE', 'ō' => 'o', 'Ō' => 'O', 'ơ' => 'o', 'Ơ' => 'O', 'ö' => 'oe', 'Ö' => 'OE', 'ṗ' => 'p', 'Ṗ' => 'P', 'ŕ' => 'r', 'Ŕ' => 'R', 'ř' => 'r', 'Ř' => 'R', 'ŗ' => 'r', 'Ŗ' => 'R', 'ś' => 's', 'Ś' => 'S', 'ŝ' => 's', 'Ŝ' => 'S', 'š' => 's', 'Š' => 'S', 'ṡ' => 's', 'Ṡ' => 'S', 'ş' => 's', 'Ş' => 'S', 'ș' => 's', 'Ș' => 'S', 'ß' => 'SS', 'ť' => 't', 'Ť' => 'T', 'ṫ' => 't', 'Ṫ' => 'T', 'ţ' => 't', 'Ţ' => 'T', 'ț' => 't', 'Ț' => 'T', 'ŧ' => 't', 'Ŧ' => 'T', 'ú' => 'u', 'Ú' => 'U', 'ù' => 'u', 'Ù' => 'U', 'ŭ' => 'u', 'Ŭ' => 'U', 'û' => 'u', 'Û' => 'U', 'ů' => 'u', 'Ů' => 'U', 'ű' => 'u', 'Ű' => 'U', 'ũ' => 'u', 'Ũ' => 'U', 'ų' => 'u', 'Ų' => 'U', 'ū' => 'u', 'Ū' => 'U', 'ư' => 'u', 'Ư' => 'U', 'ü' => 'ue', 'Ü' => 'UE', 'ẃ' => 'w', 'Ẃ' => 'W', 'ẁ' => 'w', 'Ẁ' => 'W', 'ŵ' => 'w', 'Ŵ' => 'W', 'ẅ' => 'w', 'Ẅ' => 'W', 'ý' => 'y', 'Ý' => 'Y', 'ỳ' => 'y', 'Ỳ' => 'Y', 'ŷ' => 'y', 'Ŷ' => 'Y', 'ÿ' => 'y', 'Ÿ' => 'Y', 'ź' => 'z', 'Ź' => 'Z', 'ž' => 'z', 'Ž' => 'Z', 'ż' => 'z', 'Ż' => 'Z', 'þ' => 'th', 'Þ' => 'Th', 'µ' => 'u', 'а' => 'a', 'А' => 'a', 'б' => 'b', 'Б' => 'b', 'в' => 'v', 'В' => 'v', 'г' => 'g', 'Г' => 'g', 'д' => 'd', 'Д' => 'd', 'е' => 'e', 'Е' => 'E', 'ё' => 'e', 'Ё' => 'E', 'ж' => 'zh', 'Ж' => 'zh', 'з' => 'z', 'З' => 'z', 'и' => 'i', 'И' => 'i', 'й' => 'j', 'Й' => 'j', 'к' => 'k', 'К' => 'k', 'л' => 'l', 'Л' => 'l', 'м' => 'm', 'М' => 'm', 'н' => 'n', 'Н' => 'n', 'о' => 'o', 'О' => 'o', 'п' => 'p', 'П' => 'p', 'р' => 'r', 'Р' => 'r', 'с' => 's', 'С' => 's', 'т' => 't', 'Т' => 't', 'у' => 'u', 'У' => 'u', 'ф' => 'f', 'Ф' => 'f', 'х' => 'h', 'Х' => 'h', 'ц' => 'c', 'Ц' => 'c', 'ч' => 'ch', 'Ч' => 'ch', 'ш' => 'sh', 'Ш' => 'sh', 'щ' => 'sch', 'Щ' => 'sch', 'ъ' => '', 'Ъ' => '', 'ы' => 'y', 'Ы' => 'y', 'ь' => '', 'Ь' => '', 'э' => 'e', 'Э' => 'e', 'ю' => 'ju', 'Ю' => 'ju', 'я' => 'ja', 'Я' => 'ja');
 	    return str_replace(array_keys($transliterationTable), array_values($transliterationTable), $txt);
 	}
+	/*
+	 * This function converts a time value into hours and minutes format.
+	 * @param int $time The amount of minutes. Default: '%02d:%02d'
+	 * @return string The string of the time formated
+	 * */
     public static function convertToHoursMins($time, $format = '%02d:%02d') {
         if ($time < 1) {
             return sprintf($format, 0, 0);
@@ -35,10 +58,21 @@ class Common{
         $minutes = ($time % 60);
         return sprintf($format, $hours, $minutes);
     }
+    /*
+     * This function will take a string in the format of HH:MM and turn it into minutes
+     * @param string The time formated as HH:MM
+     * @return int The Integer indicating the amount of minutes
+     * */
     public static function timeFormatToMinutes($t){
         $timed = explode(":",$t);
         return (  ( (int)$timed[0] * 60)  + ( (int)$timed[1]  )  );
     }
+
+    /*
+     * This function will try to upper case the first letter of each word
+     * @param string $str The Phrase we want to convert
+     * @return string The same phrase but with all words starting with an upper letter
+     * */
     public static function initials($str) {
         $ret = '';
         try{
@@ -50,13 +84,27 @@ class Common{
         }
         return $ret;
     }
+    /*
+     *  This function will get the real url of the laravel system. This includes the query string
+     * @return string The real url
+     * */
     public static function getRealUrl(){
         return (Request::getPathInfo() . (Request::getQueryString() ? ('?' . Request::getQueryString()) : ''));
     }
+    /*
+     * This function will clean an string
+     * @param string $string The string we want to clean
+     * @return string The string already cleaned.
+     * */
     public static function clean($string) {
         $string = str_replace(" ","",$string);
         return preg_replace("/[^ \w]+/", "", $string);
     }
+    /*
+     * This function will remote latin accents from an string
+     * @param string $string The string we want to process
+     * @return string The string already processed
+     * */
     public static function remove_accents($string) {
         if ( !preg_match('/[\x80-\xff]/', $string) )
             return $string;
@@ -162,6 +210,12 @@ class Common{
 
         return $string;
     }
+
+    /*
+     * This function generates a random string in hexadecimal format
+     * @param int $l The number of characters we want to generate. Default: 16.
+     * @return string The random string.
+     * */
     public static function randomHex($l = 16){
       $letters = "1234567890ABCDEF";
       $str = "";

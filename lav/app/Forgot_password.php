@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Classes\ExtendedModel;
 
-class Forgot_password extends Model
+class Forgot_password extends ExtendedModel
 {
 
     /**

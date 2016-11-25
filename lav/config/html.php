@@ -14,8 +14,21 @@ return [
     |
     */
 
+    /*VERSIONS*/
     'bootstrap_version'             =>  '3.3.7',
     'jquery_version'                =>  '3.1.1',
     'jquery_validation_version'     =>  '1.15.0',
+    'adminlte_version'              =>  '2.3.7',
+    'fontawesome_version'           =>  '4.7.0',
+    'ionicons_version'              =>  '2.0.1',
+    'respond_version'               =>  '1.4.2',
+    'html5shiv_version'             =>  '3.7.3',
+
+
+    /*IMAGES*/
+    'avatars_route'                 =>  'uploads/avatars/',
+    'default_avatar'                =>  'img/default_avatar.png',
+
+
 
 ];

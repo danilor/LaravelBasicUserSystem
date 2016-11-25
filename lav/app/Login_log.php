@@ -1,10 +1,9 @@
 <?php
 
 namespace App;
+use App\Classes\ExtendedModel;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Login_log extends Model
+class Login_log extends ExtendedModel
 {
     //
 }

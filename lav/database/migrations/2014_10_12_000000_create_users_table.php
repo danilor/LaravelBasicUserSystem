@@ -24,9 +24,14 @@ class CreateUsersTable extends Migration
             $table->string('address')->nullable();
             $table->string('address2')->nullable();
             $table->string('phone')->nullable();
+            $table->string('sex')->nullable();
             $table->text('bio')->nullable();
+            $table->text('studies')->nullable();
+            $table->text('location')->nullable();
             $table->text('details')->nullable();
-            $table->string('avatar',1024)->nullable();
+            $table->text('notes')->nullable();
+            $table->string('avatar',2048)->nullable();
+            $table->string('skills',2048)->nullable();
             //Option information
             $table->boolean('administrator')->default(0);
             $table->boolean('status')->default(1);

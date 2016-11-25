@@ -5,7 +5,7 @@
 <!-- Compiled and minified JavaScript Validation Plugin -->
 <script src="/assets/jquery-validation/{{config('html.jquery_validation_version')}}/jquery.validate.min.js"></script>
 <script src="/assets/jquery-validation/{{config('html.jquery_validation_version')}}/additional-methods.min.js"></script>
-
+<script src="/js/general.js"></script>
 <script type="text/javascript">
     /**
      * Init document ready

@@ -27,4 +27,11 @@ Route::any('/logout','AuthController@logout')->name('logout');
 // Forgot password page
 Route::get('/forgot_password','AuthController@showForgotPassword')->name('forgot_password');
 Route::post('/forgot_password','AuthController@actionForgotPassword')->name('forgot_password_action');
+// Profile pages
 
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/profile','ProfileController@showProfile')->name('show_profile');
+});
+
+// Status
+Route::get('/status/get_status_comments','StatusController@getStatusComments')->name('get_status_comments');

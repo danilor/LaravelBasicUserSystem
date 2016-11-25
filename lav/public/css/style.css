@@ -19,3 +19,9 @@ label.error{
     margin:5px;
     padding:5px;
 }
+.comments_status_area{
+    margin-top: 10px;
+}
+.comments_status_area .user-block .username{
+    margin-left: 0px;
+}

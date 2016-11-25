@@ -2,9 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Classes\ExtendedModel;
 
-class Email extends Model
+class Email extends ExtendedModel
 {
     //
 }
