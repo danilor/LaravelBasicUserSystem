@@ -1,0 +1,1 @@
+php phpDocumentor.phar -d /mnt/hgfs/GC/BasicLaravel/lav/ -t /mnt/hgfs/GC/BasicLaravel/lav/public/docs
