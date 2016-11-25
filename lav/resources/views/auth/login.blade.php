@@ -6,7 +6,7 @@
 
                 <img id="profile-img" class="profile-img-card" src="/img/laravel.png" />
                 <p id="profile-name" class="profile-name-card"></p>
-                {!! Form::open(array('url' => '/login','class'=>'form_validate form-signin','method'=>'POST')) !!}
+                {!! Form::open(array('url' => '/login','class'=>'form_validate form-signin formSubmitPageBlock','method'=>'POST')) !!}
                     @if(\Input::get("url") != "")
                         <input type="hidden" name="url" value="{{ \Input::get("url") }}" />
                     @endif

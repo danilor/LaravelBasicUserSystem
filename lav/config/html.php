@@ -23,6 +23,9 @@ return [
     'ionicons_version'              =>  '2.0.1',
     'respond_version'               =>  '1.4.2',
     'html5shiv_version'             =>  '3.7.3',
+    'blockUI_version'               =>  '2.7',
+    'noty_version'                  =>  '2.3.8',
+    'animatecss_version'            =>  '3.5.1',
 
 
     /*IMAGES*/

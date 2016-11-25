@@ -5,7 +5,7 @@
 @section('body')
                 <img id="profile-img" class="profile-img-card" src="/img/laravel.png" />
                 <p id="profile-name" class="profile-name-card"></p>
-                {!! Form::open(array('url' => '/forgot_password','class'=>'form_validate form-signin','method'=>'POST')) !!}
+                {!! Form::open(array('url' => '/forgot_password','class'=>'form_validate form-signin formSubmitPageBlock','method'=>'POST')) !!}
                     <p>
                         {{ "Please enter your email"  }}
                     </p>

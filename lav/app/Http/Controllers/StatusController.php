@@ -57,4 +57,33 @@ class StatusController extends Controller
         return $response->getJsonResponse();
 
    }
+
+   public function SaveStatusComments(){
+        $response = new \App\Classes\AjaxResponse("Status","Save Comment");
+        $rules = array(
+			'status_id'                 =>  Common::getRule("number", true,'exists:user_statuses,id'),
+			'content'                   =>  Common::getRule("gentext", true),
+		);
+		// Lets run the validator
+		$validator = Validator::make(Input::all(), $rules);
+		if ($validator->fails()) {
+            $response->setError(1,'Error in fields');
+            return $response->getJsonResponse();
+		}
+		$response->resetError();
+		try{
+            $usc = new user_status_comment();
+            $usc -> user_id = Auth::user()->id;
+            $usc -> status_id = (int) Input::get("status_id");
+            $usc -> content = Input::get("content");
+            $usc -> location = '';
+            $usc -> status = 1;
+            $usc -> save();
+		}catch (\Exception $r){
+		    $response->setError(1,'Error Storing the information');
+		}
+
+		$response->setData(["id"=>0]);
+		return $response->getJsonResponse();
+   }
 }

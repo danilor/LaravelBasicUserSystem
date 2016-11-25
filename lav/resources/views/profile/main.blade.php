@@ -53,26 +53,26 @@
                       <p>
                        {{ $us->getContent()  }}
                       </p>
+                      {!! Form::open(array('url' => '/status/save_status_comment','class'=>'form-horizontal comment_add need_form_validate','method'=>'post','status_id'=>$us->id)) !!}
                       <ul class="list-inline">
                         <!--<li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>-->
                         <!--<li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>-->
                         <li>
-                          <a data-toggle="collapse" data-target="#comments_status_{{ $us->id  }}" href="javascript:void(0)" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> {{ "Comments"  }} <span class="need_comments" status_comments_id="{{ $us->id  }}">(0)</span></a>
+                          <a data-toggle="collapse" data-target="#comments_status_{{ $us->id  }}" href="javascript:void(0)" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> {{ "Comments"  }} <span class="comment_number comment_number_status_{{$us->id}} need_comments" status_comments_id="{{ $us->id  }}">(0)</span></a>
                         </li>
                         <li class="pull-right">
                           </li>
                       </ul>
-
-                      <form class="form-horizontal">
+                        <input type="hidden" name="status_id" value="{{ $us->id  }}" />
                         <div class="form-group margin-bottom-none">
                           <div class="col-sm-9">
-                            <input class="form-control input-sm" placeholder="{{ "Comment"  }}">
+                            <input name="content" class="form-control input-sm" placeholder="{{ "Comment"  }}" required="required" id="comment_input_{{ $us->id }}" />
                           </div>
                           <div class="col-sm-3">
                             <button type="submit" class="btn btn-info pull-right btn-block btn-sm"><i class="fa fa-comment"></i> {{ "Send"  }}</button>
                           </div>
                         </div>
-                      </form>
+                      {!! Form::close() !!}
 
                       <div class="comments_status_area collapse" id="comments_status_{{ $us->id  }}" status_comments_area_id="{{ $us->id  }}">
 
